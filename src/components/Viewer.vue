@@ -22,7 +22,6 @@ export default {
     },
 
     previewVideo() {
-  
       let files = this.files;
       let reader = this.reader;
       this.reader.readAsDataURL(this.files[0]);
@@ -39,43 +38,40 @@ export default {
 <template>
   <div class="backdrop" v-if="isDialogOPen"></div>
   <section>
+    <div class="container">
+      <div>
+        <h2>Video File Preview</h2>
+        <hr />
+        <label
+          >Video File
+          <input
+            type="file"
+            accept="video/*"
+            multiple
+            @change="handleFileUpload($event)"
+          />
+        </label>
+        <br />
 
-  <div class="container">
-    <div>
-      <h2>Video File Preview</h2>
-      <hr />
-      <label
-        >Video File
-        <input
-          type="file"
-          accept="video/*"
-          multiple
-          @change="handleFileUpload($event)"
-        />
-      </label>
-      <br />
-
-      <dialog v-show="files.length != 0" class="base-dialog" open>
-        <video
-          v-for="(file, index) of files"
-          :key="file.name"
-          :id="'video-preview' + index"
-          controls
-          v-show="files.length != 0"
-
-        />
-        <button @click="closeDialog">Close</button>
-      </dialog>
-      <br />
+        <dialog v-show="files.length != 0" class="base-dialog" open>
+          <video
+            v-for="(file, index) of files"
+            :key="file.name"
+            :id="'video-preview' + index"
+            controls
+            v-show="files.length != 0"
+          />
+          <button @click="closeDialog">Close</button>
+        </dialog>
+        <br />
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 </template>
 
 <style scoped>
-section{
-  height:100%;
+section {
+  height: 100%;
   position: relative;
 }
 .backdrop {
@@ -85,14 +81,11 @@ section{
   height: 100%;
   top: 0;
   z-index: 10;
- 
 }
 .container {
-  
-  margin:50px;
+  margin: 50px;
   border: 2px dashed #2e2e2e;
   border-radius: 5px;
-
 }
 video {
   width: 400px;
@@ -100,8 +93,6 @@ video {
   padding: 5px;
   border: 1px solid gray;
   border-radius: 5px;
- 
-
 }
 label,
 button {
@@ -119,9 +110,8 @@ button {
 button {
   background: #f44336;
   position: absolute;
-  top:10px;
+  top: 10px;
   right: 30px;
-
 }
 input {
   position: absolute;
@@ -131,7 +121,7 @@ input {
   position: absolute;
   overflow-y: scroll;
   border-radius: 5px;
-
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   padding: 40px;
@@ -143,6 +133,6 @@ input {
   flex-wrap: wrap;
   justify-content: center;
   z-index: 20;
-  height:70%;
+  height: 70%;
 }
 </style>
